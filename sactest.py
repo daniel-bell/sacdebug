@@ -66,14 +66,10 @@ class TestFunctionConversion(unittest.TestCase):
         self.assertEqual(saclib.sacfunc_to_c("foo::bar", ["int", "float"]), "SACf__FOO__bar__i__f")
 
         # Test array arguments
-        self.assertEqual(saclib.sacfunc_to_c("foo::bar", ["int[]", "int"]), "SACf__FOO__bar__i_i__i")
-        # Test multi-dimensional array arguments
-        self.assertEqual(saclib.sacfunc_to_c("foo::bar", ["int[][]", "float[]"]), "SACf__FOO__bar__i_i_i__f_f")
-        self.assertEqual(saclib.sacfunc_to_c("foo::bar", ["int[][][]", "float[][]"]), "SACf__FOO__bar__i_i_i_i__f_f_f")
+        self.assertEqual(saclib.sacfunc_to_c("foo::bar", ["int[]", "int"]), "SACf__FOO__bar__i_P__i")
 
         # Test fixed size array arguments
         self.assertEqual(saclib.sacfunc_to_c("foo::bar", ["int[6]", "int"]), "SACf__FOO__bar__i_6__i")
-        self.assertEqual(saclib.sacfunc_to_c("foo::bar", ["int[][6]", "int"]), "SACf__FOO__bar__i_i_6__i")
 
         # Test invalid argument type
         self.assertEqual(saclib.sacfunc_to_c("foo::bar", ["int", "foo"]), None)

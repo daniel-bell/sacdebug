@@ -134,7 +134,7 @@ def sacfunc_to_c(func_name, args=list()):
                     if arr > 0:
                         c_func_name += ("_" + str(arr))
                     else:
-                        c_func_name += ("_" + arg_type)
+                        c_func_name += "_P"
             except KeyError:
                 return None
 
