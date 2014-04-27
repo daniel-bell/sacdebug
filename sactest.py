@@ -84,7 +84,7 @@ class TestSacToC(unittest.TestCase):
 
     def test_sac_to_c(self):
         self.assertEqual(saclib.sac_to_c("foo()", []), "SACf__MAIN__foo")
-        self.assertEqual(saclib.sac_to_c("foo::bar(int[], int)", []), "SACf__FOO__bar__i_i__i")
+        self.assertEqual(saclib.sac_to_c("foo::bar(int[], int)", []), "SACf__FOO__bar__i_P__i")
 
         input_vars = "SACp_emal_5_x\nSACp_emal_5_x__SSA01\nSACl_foo\nSACf__MAIN__foo"
         self.assertEqual(saclib.sac_to_c("x", input_vars), "SACp_emal_5_x__SSA01")
@@ -140,12 +140,12 @@ class TestCommandConversion(unittest.TestCase):
         input_text = "breakpoint *sac(foo(int, float, int[]))"
         output = saclib.extract_sacblocks(input_text)
         self.assertEqual(saclib.replace_sacblocks(input_text, output, input_vars),
-                         "breakpoint SACf__MAIN__foo__i__f__i_i")
+                         "breakpoint SACf__MAIN__foo__i__f__i_P")
 
         input_text = "breakpoint *sac(foo(int, float, int[])) *sac(x)"
         output = saclib.extract_sacblocks(input_text)
         self.assertEqual(saclib.replace_sacblocks(input_text, output, input_vars),
-                         "breakpoint SACf__MAIN__foo__i__f__i_i SACp_emal_5_x__SSA01")
+                         "breakpoint SACf__MAIN__foo__i__f__i_P SACp_emal_5_x__SSA01")
 
         input_text = "watchpoint *sac(x))"
         output = saclib.extract_sacblocks(input_text)
