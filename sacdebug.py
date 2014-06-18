@@ -42,7 +42,8 @@ class SacVariableWatchpoint(gdb.Breakpoint):
                                                     temporary=True)
         self.silent = True
 
-    def stop(self):
+    @staticmethod
+    def stop():
         return True
 
 
@@ -52,7 +53,8 @@ class SacFunctionBreakpoint(gdb.Breakpoint):
         super(SacFunctionBreakpoint, self).__init__(spec, gdb.BP_BREAKPOINT, internal=True, temporary=True)
         self.silent = True
 
-    def stop(self):
+    @staticmethod
+    def stop():
         return True
 
 
@@ -62,7 +64,8 @@ class SacFunctionReturnBreakpoint(gdb.FinishBreakpoint):
         super(SacFunctionReturnBreakpoint, self).__init__(internal=True)
         self.silent = True
 
-    def stop(self):
+    @staticmethod
+    def stop():
         return True
 
 
